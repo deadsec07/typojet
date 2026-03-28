@@ -1,0 +1,26 @@
+[
+  {
+    "id": "doc-1",
+    "title": "Rust Search Engine",
+    "tags": ["rust", "search", "backend"],
+    "description": "A tiny typo-tolerant search engine for docs and websites."
+  },
+  {
+    "id": "doc-2",
+    "title": "Shipping a Small Website",
+    "tags": ["deployment", "frontend"],
+    "description": "Practical notes on shipping a polished small app quickly."
+  },
+  {
+    "id": "doc-3",
+    "title": "Autocomplete Patterns",
+    "tags": ["ux", "search"],
+    "description": "Prefix-friendly suggestions for instant interfaces."
+  },
+  {
+    "id": "doc-4",
+    "title": "Schema Aware Search",
+    "tags": ["ranking", "relevance"],
+    "description": "Field boosts make title matches outrank descriptions."
+  }
+]
