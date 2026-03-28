@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TypoJet | Instant Search for Small Apps</title>
+    <meta
+      name="description"
+      content="TypoJet is a small Rust search engine for instant typo-tolerant search, prefix autocomplete, and schema-aware ranking."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Typo-tolerant Rust search</p>
+          <h1>Instant search that feels fast before it gets complicated.</h1>
+          <p class="lede">
+            TypoJet is a compact open-source search engine for websites and
+            small apps. Prefix-friendly, schema-aware, field-boosted, and easy
+            to run as a single binary.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://github.com/deadsec07/typojet">View on GitHub</a>
+            <a class="button secondary" href="https://github.com/deadsec07/typojet#readme">Read the docs</a>
+          </div>
+          <ul class="hero-points">
+            <li>Typo tolerance with Levenshtein scoring</li>
+            <li>Prefix/autocomplete search for instant UX</li>
+            <li>Multi-index, filterable, sortable, and shippable</li>
+          </ul>
+        </div>
+        <div class="hero-card">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <pre><code>$ cargo run -- --api-key dev-secret
+typojet listening on http://127.0.0.1:7700
+
+$ curl "http://127.0.0.1:7700/indexes/docs/search?q=serch"
+{
+  "query": "serch",
+  "total": 1,
+  "hits": [
+    {
+      "id": "doc-1",
+      "score": 10.0,
+      "snippets": {
+        "title": "Rust Search Engine"
+      }
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="grid-section">
+          <article class="feature-panel large">
+            <p class="panel-label">Why it exists</p>
+            <h2>Meilisearch inspiration, much smaller delivery surface.</h2>
+            <p>
+              TypoJet is for developers who want instant search without dragging
+              in a giant platform. It keeps the useful bits close to the metal:
+              JSON documents, inverted index, ranking boosts, filters, sorting,
+              pagination, and a tiny HTTP API.
+            </p>
+          </article>
+          <article class="feature-panel accent">
+            <p class="panel-label">Shipping model</p>
+            <h2>Single binary. Local first.</h2>
+            <p>
+              Start it with Rust, point your app at the REST API, and keep your
+              data on disk. No cluster. No control plane. No dashboard required.
+            </p>
+          </article>
+        </section>
+
+        <section class="capabilities">
+          <div class="section-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2>Useful features, intentionally scoped.</h2>
+          </div>
+          <div class="capability-grid">
+            <article>
+              <h3>Instant relevance</h3>
+              <p>
+                Exact match boost, prefix boost, field boost, and typo penalty
+                work together to make small datasets feel sharp.
+              </p>
+            </article>
+            <article>
+              <h3>Schema aware</h3>
+              <p>
+                Configure searchable, filterable, and sortable fields per index
+                instead of pretending every field should behave the same way.
+              </p>
+            </article>
+            <article>
+              <h3>App ready</h3>
+              <p>
+                Multi-index support, document CRUD, snippets, pagination, and
+                optional static bearer auth cover the common first release needs.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="comparison">
+          <div class="section-heading">
+            <p class="eyebrow">Positioning</p>
+            <h2>Built for the space between sqlite and full search infrastructure.</h2>
+          </div>
+          <div class="comparison-list">
+            <div>
+              <span class="kicker">Best for</span>
+              <p>Docs, marketing sites, internal tools, indie apps, prototypes.</p>
+            </div>
+            <div>
+              <span class="kicker">Not trying to be</span>
+              <p>OpenSearch, an enterprise suite, a distributed cluster, or a vector platform.</p>
+            </div>
+            <div>
+              <span class="kicker">Current shape</span>
+              <p>Clean Rust codebase, GitHub-friendly first release, easy to inspect end to end.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
