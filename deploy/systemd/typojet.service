@@ -1,0 +1,18 @@
+[Unit]
+Description=TypoJet search engine
+After=network.target
+
+[Service]
+Type=simple
+User=typojet
+Group=typojet
+WorkingDirectory=/var/lib/typojet
+Environment=TYPOJET_BIND=0.0.0.0:7700
+Environment=TYPOJET_DATA_DIR=/var/lib/typojet
+Environment=TYPOJET_API_KEY=change-me
+ExecStart=/usr/local/bin/typojet
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

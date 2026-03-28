@@ -344,3 +344,80 @@ These are intentionally out of scope for the current project shape, but worth ke
 - bearer auth beyond the current single static token setup
 - enterprise feature sets
 - analytics dashboard
+
+## Linux deployment
+
+Build the binary:
+
+```bash
+git clone https://github.com/deadsec07/typojet
+cd typojet
+cargo build --release
+```
+
+Run it directly:
+
+```bash
+./target/release/typojet --bind 0.0.0.0:7700 --data-dir /var/lib/typojet
+```
+
+With optional auth:
+
+```bash
+TYPOJET_API_KEY=dev-secret ./target/release/typojet \
+  --bind 0.0.0.0:7700 \
+  --data-dir /var/lib/typojet
+```
+
+### systemd
+
+A ready-to-edit service file is included at `deploy/systemd/typojet.service`.
+
+Typical install flow:
+
+```bash
+sudo useradd --system --home /var/lib/typojet --shell /usr/sbin/nologin typojet
+sudo mkdir -p /var/lib/typojet
+sudo cp target/release/typojet /usr/local/bin/typojet
+sudo cp deploy/systemd/typojet.service /etc/systemd/system/typojet.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now typojet
+```
+
+### Docker
+
+A `Dockerfile` is included for containerized Linux deployment.
+
+Build the image:
+
+```bash
+docker build -t typojet .
+```
+
+Run it:
+
+```bash
+docker run --rm -p 7700:7700 \
+  -e TYPOJET_API_KEY=dev-secret \
+  typojet
+```
+
+Mount a host directory to `/var/lib/typojet` if you want persistent index data.
+
+## Release automation
+
+The repo now includes:
+
+- `.github/workflows/release.yml` to build and attach Linux `x86_64` binaries on tags like `v0.1.0`
+- `.github/workflows/pages.yml` to deploy the marketing site from `site/` to GitHub Pages on pushes to `main`
+
+## Deployment assets
+
+The repo now contains these deploy-oriented files:
+
+- `Dockerfile`
+- `deploy/systemd/typojet.service`
+- `.github/workflows/release.yml`
+- `.github/workflows/pages.yml`
+- `site/index.html`
+- `site/styles.css`

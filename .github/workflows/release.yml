@@ -1,0 +1,37 @@
+name: Release Linux Binary
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Package binary
+        run: |
+          mkdir -p dist
+          cp target/release/typojet dist/typojet-linux-x86_64
+          chmod +x dist/typojet-linux-x86_64
+          tar -C dist -czf dist/typojet-linux-x86_64.tar.gz typojet-linux-x86_64
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/typojet-linux-x86_64
+            dist/typojet-linux-x86_64.tar.gz
