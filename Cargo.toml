@@ -2,6 +2,8 @@
 name = "typojet"
 version = "0.1.0"
 edition = "2024"
+description = "Typo-tolerant Rust search engine by A A Hasnat for local apps and websites"
+repository = "https://github.com/deadsec07/typojet"
 
 [dependencies]
 axum = "0.8"
